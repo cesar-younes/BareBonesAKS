@@ -1,2 +1,2 @@
-# AzureDevOpsToAKS
-A project that demonstrates deploying to AKS from Azure DevOps. The pipelines include an Infrastructure pipeline to create the cluster and a deployment pipeline to deploy to it.
+# BareBonesAKS
+Infrastructure as Code used for the other BareBones repos. This project uses Terraform to privision an Azure Kubernetes Service(AKS) cluster and an Azure Container Repository
