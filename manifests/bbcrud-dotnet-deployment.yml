@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bbcrud-svc
+  labels:
+    app: bbapp
+    tier: bbcrud
+spec:
+  ports:
+  - port: 80
+    protocol: TCP # default 
+    name: bbcrud-dotnet # optional when only 1 port
+  selector:
+    tier: bbcrud 
+  type: LoadBalancer # default
+---
+apiVersion: apps/v1 # apps API group
+kind: Deployment
+metadata:
+  name: bbcrud-dotnet
+  labels:
+    app: bbapp
+    tier: bbcrud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bbapp
+      tier: bbcrud
+  template:
+    metadata:
+      labels:
+        app: bbapp
+        tier: bbcrud
+    spec: # Pod spec
+      containers:
+      - name: bbcrud-dotnet
+        image: bbmicroservicesacr.azurecr.io/bbcrudmicroservice-dotnet:93
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80

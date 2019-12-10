@@ -1,0 +1,1 @@
+az aks update -n BBAKS -g BBMicroservices-rg --attach-acr bbmicroservicesacr
